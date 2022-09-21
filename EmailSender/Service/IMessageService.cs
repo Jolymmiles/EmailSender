@@ -1,4 +1,6 @@
-﻿namespace EmailSender.Service
+﻿using EmailSender.ContainerConsumers.Messages;
+
+namespace EmailSender.Service
 {
     /// <summary>
     /// Interface for Message Service

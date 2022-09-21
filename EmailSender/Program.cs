@@ -1,6 +1,8 @@
+using EmailSender.ContainerConsumers;
 using EmailSender.Service;
 using EmailSender.Service.Impl;
 using Google.Apis.Auth.AspNetCore3;
+using MassTransit;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +27,35 @@ builder.Services
             options.ClientId = "230123170832-ln9kjjvflv4faevhkt34teg0kc0nfcob.apps.googleusercontent.com";
             options.ClientSecret = "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";
         });
+
+
+builder.Services.AddMassTransit(x =>
+{
+    // Add a single consumer
+    x.AddConsumer<SubmitOrderConsumer>(typeof(SubmitOrderConsumerDefinition));
+
+    // Add a single consumer by type
+    x.AddConsumer(typeof(SubmitOrderConsumer), typeof(SubmitOrderConsumerDefinition));
+
+    // Add all consumers in the specified assembly
+    x.AddConsumers(typeof(SubmitOrderConsumer).Assembly);
+
+    // Add all consumers in the namespace containing the specified type
+    x.AddConsumersFromNamespaceContaining<SubmitOrderConsumer>();
+
+    x.SetKebabCaseEndpointNameFormatter();
+
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host("localhost", "/", h =>
+        {
+            h.Username("guest");
+            h.Password("guest");
+        });
+
+        cfg.ConfigureEndpoints(context);
+    });
+});
 
 
 
