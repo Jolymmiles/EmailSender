@@ -11,6 +11,6 @@ namespace EmailSender.Service
         /// Send message
         /// </summary>
         /// <param name="message"></param>
-        public void SendMessege(Message message);
+        public void SendMessege(MessageToSend message);
     }
 }

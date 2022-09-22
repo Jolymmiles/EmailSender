@@ -1,3 +1,4 @@
+using EmailSender.ContainerConsumers.Messages;
 using EmailSender.Service;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,7 +29,7 @@ namespace EmailSender.Controllers
             try
             {
                 _logger.LogInformation("Successfully get");
-                var message = new Message("some@gmail.com", "someText", "some sub");
+                var message = new MessageToSend("some@gmail.com", "someText", "some sub");
                 return Ok(message);
             }
             catch (Exception e)
@@ -46,7 +47,7 @@ namespace EmailSender.Controllers
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
         [HttpPost(Name = "SendMail")]
-        public IActionResult SendMessage(Message data)
+        public IActionResult SendMessage(MessageToSend data)
         {
             try
             {

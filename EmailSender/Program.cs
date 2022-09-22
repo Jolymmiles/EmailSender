@@ -1,4 +1,4 @@
-using EmailSender.ContainerConsumers;
+using EmailSender.Container.Consumers;
 using EmailSender.Service;
 using EmailSender.Service.Impl;
 using Google.Apis.Auth.AspNetCore3;
@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
