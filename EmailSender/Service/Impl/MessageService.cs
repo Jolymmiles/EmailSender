@@ -28,7 +28,7 @@ namespace EmailSender.Service.Impl
         /// Send message
         /// </summary>
         /// <param name="message"></param>
-        public async void SendMessege(MessageToSend message)
+        public async Task SendMessege(MessageToSend message)
         {
             string pattern = @"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
                 @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,17}))$";

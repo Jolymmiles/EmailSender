@@ -16,7 +16,7 @@ namespace EmailSender.Container.Consumers
 
         public async Task Consume(ConsumeContext<MessageToSend> context)
         {
-            _messageService.SendMessege(context.Message);
+            await _messageService.SendMessege(context.Message);
         }
     }
 }
