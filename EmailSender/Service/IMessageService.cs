@@ -1,4 +1,6 @@
-﻿namespace EmailSender.Service
+﻿using GeographyPortal.Container.Messages;
+
+namespace EmailSender.Service
 {
     /// <summary>
     /// Interface for Message Service
@@ -9,6 +11,6 @@
         /// Send message
         /// </summary>
         /// <param name="message"></param>
-        public void SendMessege(Message message);
+        public Task SendMessege(MessageToSend message);
     }
 }

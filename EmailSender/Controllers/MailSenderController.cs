@@ -1,6 +1,6 @@
 using EmailSender.Service;
+using GeographyPortal.Container.Messages;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.RegularExpressions;
 
 namespace EmailSender.Controllers
 {
@@ -28,8 +28,8 @@ namespace EmailSender.Controllers
         {
             try
             {
-                _logger.LogInformation("Succes get");
-                var message = new Message("some@gmail.com", "someText", "some sub");
+                _logger.LogInformation("Successfully get");
+                var message = new MessageToSend("some@gmail.com", "someText", "some sub");
                 return Ok(message);
             }
             catch (Exception e)
@@ -47,17 +47,12 @@ namespace EmailSender.Controllers
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
         [HttpPost(Name = "SendMail")]
-        public IActionResult SendMessage(Message data)
+        public IActionResult SendMessage(MessageToSend data)
         {
-            string pattern = @"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
-                @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,17}))$";
-
             try
             {
-                if (!Regex.IsMatch(data.EmailAdress, pattern, RegexOptions.IgnoreCase))
-                    throw new ArgumentException("NonValid email", data.EmailAdress);
                 _messageService.SendMessege(data);
-                _logger.LogInformation("Succes sending");
+                _logger.LogInformation("Successfully sending");
                 return Ok();
             }
             catch (Exception e)
