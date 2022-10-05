@@ -2,12 +2,12 @@
 
 namespace EmailSender.Container.Consumers
 {
-    class SubmitOrderConsumerDefinition : ConsumerDefinition<SubmitOrderConsumer>
+    class MessageToSendConsumerDefinition : ConsumerDefinition<MessageToSendConsumer>
     {
-        public SubmitOrderConsumerDefinition()
+        public MessageToSendConsumerDefinition()
         {
             // override the default endpoint name
-            EndpointName = "order";
+            EndpointName = "messages";
 
             // limit the number of messages consumed concurrently
             // this applies to the consumer only, not the endpoint
@@ -15,7 +15,7 @@ namespace EmailSender.Container.Consumers
         }
 
         protected override void ConfigureConsumer(IReceiveEndpointConfigurator endpointConfigurator,
-            IConsumerConfigurator<SubmitOrderConsumer> consumerConfigurator)
+            IConsumerConfigurator<MessageToSendConsumer> consumerConfigurator)
         {
             // configure message retry with millisecond intervals
             endpointConfigurator.UseMessageRetry(r => r.Intervals(100, 200, 500, 800, 1000));

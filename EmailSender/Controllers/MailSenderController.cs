@@ -1,5 +1,5 @@
-using EmailSender.ContainerConsumers.Messages;
 using EmailSender.Service;
+using GeographyPortal.Container.Messages;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmailSender.Controllers

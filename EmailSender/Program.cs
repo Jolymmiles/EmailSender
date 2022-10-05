@@ -7,12 +7,10 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
 
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddScoped<IMessageService, MessageService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -33,19 +31,8 @@ builder.Services
 
 builder.Services.AddMassTransit(x =>
 {
-    // Add a single consumer
-    x.AddConsumer<SubmitOrderConsumer>(typeof(SubmitOrderConsumerDefinition));
 
-    // Add a single consumer by type
-    x.AddConsumer(typeof(SubmitOrderConsumer), typeof(SubmitOrderConsumerDefinition));
-
-    // Add all consumers in the specified assembly
-    x.AddConsumers(typeof(SubmitOrderConsumer).Assembly);
-
-    // Add all consumers in the namespace containing the specified type
-    x.AddConsumersFromNamespaceContaining<SubmitOrderConsumer>();
-
-    x.SetKebabCaseEndpointNameFormatter();
+    x.AddConsumer<MessageToSendConsumer, MessageToSendConsumerDefinition>();
 
     x.UsingRabbitMq((context, cfg) =>
     {
@@ -56,14 +43,16 @@ builder.Services.AddMassTransit(x =>
         });
 
         cfg.ConfigureEndpoints(context);
+        
+
     });
 });
 
 
 
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12

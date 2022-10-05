@@ -1,4 +1,4 @@
-namespace EmailSender.ContainerConsumers.Messages
+namespace GeographyPortal.Container.Messages
 {
     /// <summary>
     /// Message

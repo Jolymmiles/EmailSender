@@ -1,4 +1,4 @@
-﻿using EmailSender.ContainerConsumers.Messages;
+﻿using GeographyPortal.Container.Messages;
 
 namespace EmailSender.Service
 {

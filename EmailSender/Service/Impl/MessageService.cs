@@ -1,5 +1,5 @@
-﻿using EmailSender.ContainerConsumers.Messages;
-using EmailSender.Properties;
+﻿using EmailSender.Properties;
+using GeographyPortal.Container.Messages;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Gmail.v1;
 using Google.Apis.Util;
@@ -30,6 +30,7 @@ namespace EmailSender.Service.Impl
         /// <param name="message"></param>
         public async Task SendMessege(MessageToSend message)
         {
+            _logger.LogInformation(message.ToString());
             string pattern = @"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
                 @"(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9a-z][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,17}))$";
 
