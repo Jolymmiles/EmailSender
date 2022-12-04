@@ -117,16 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ClientId" xml:space="preserve">
-    <value>230123170832-ln9kjjvflv4faevhkt34teg0kc0nfcob.apps.googleusercontent.com</value>
-  </data>
-  <data name="ClientSecret" xml:space="preserve">
-    <value>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</value>
-  </data>
-  <data name="GooglePass" xml:space="preserve">
-    <value>mailsender1</value>
-  </data>
-  <data name="GoogleUser" xml:space="preserve">
-    <value>geography.pet.project.mail.sender@gmail.com</value>
-  </data>
 </root>
